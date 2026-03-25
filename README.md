@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="screenshot.png" width="500">
+  <img src="Screenshot.png" width="500">
 </p>
 # 🌙 مشروع "نور" - السيرة النبوية
 
