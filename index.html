@@ -63,7 +63,7 @@ nav {
 
 .links a {
     color: #ddd;
-    margin-left:52px;
+    margin-left: 52px;
     text-decoration: none;
 }
 
@@ -93,22 +93,12 @@ nav {
     cursor: pointer;
     color: white;
     margin-top: 10px;
+    transition: 0.3s;
 }
 
-/* زر الإيقاف */
-.stop-btn {
-    margin-top: 15px;
-    background: #6c757d;
-    border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    color: white;
-}
-
-.stop-btn:hover {
-    background: #495057;
+.start-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #52b788;
 }
 
 /* QR */
@@ -117,6 +107,7 @@ nav {
     bottom: 15px;
     left: 15px;
 }
+
 .qr img {
     width: 80px;
 }
@@ -148,10 +139,9 @@ nav {
         أنا <strong>نور</strong>، دليلك لاكتشاف أهم الأحداث بطريقة حديثة وتفاعلية.
     </p>
 
-    <button class="start-btn" onclick="startJourney()">ابدأ الرحلة</button>
-    <br>
+    <button class="start-btn" onclick="startJourney()">ابدأ الرحلة 🚀</button>
 
-
+    <!-- الصوت -->
     <audio id="voice" src="voice.mp3.wav"></audio>
 
 </div>
@@ -206,14 +196,15 @@ drawOrb();
 
 let audio = document.getElementById("voice");
 
+/* مستوى الصوت */
+audio.volume = 0.6;
+
 /* محاولة تشغيل تلقائي */
 window.addEventListener("load", () => {
-    audio.play().catch(() => {
-        console.log("autoplay blocked");
-    });
+    audio.play().catch(() => {});
 });
 
-/* fallback: أول click */
+/* fallback */
 document.addEventListener("click", () => {
     if(audio.paused){
         audio.play().catch(()=>{});
@@ -222,14 +213,8 @@ document.addEventListener("click", () => {
 
 /* زر الرحلة */
 function startJourney() {
-    audio.play().catch(()=>{});
-
-    audio.onended = function () {
-        window.location.href = "topics.html";
-    };
+    window.location.href = "topics.html";
 }
-
-
 </script>
 
 </body>
