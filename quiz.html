@@ -231,9 +231,13 @@ body::after {
    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
 </div>
 
+<!-- صوت -->
+<audio id="correctSound" src="correct.wav"></audio>
+<audio id="wrongSound" src="wrong.wav"></audio>
+
 <script>
 
-/* نور (زي ما هو عندك) */
+/* نور */
 document.querySelector(".noor").onclick = () => {
     let s = document.querySelector(".speech");
     s.style.display = s.style.display === "none" ? "block" : "none";
@@ -319,6 +323,9 @@ function check(btn, selected, correct){
     let result = document.getElementById("result");
     let buttons = document.querySelectorAll(".option");
 
+    let correctSound = document.getElementById("correctSound");
+    let wrongSound = document.getElementById("wrongSound");
+
     buttons.forEach(b => b.disabled = true);
 
     if(selected === correct){
@@ -326,6 +333,9 @@ function check(btn, selected, correct){
         result.innerHTML = "✔ إجابة صحيحة";
         result.style.color = "green";
         score++;
+
+        correctSound.currentTime = 0;
+        correctSound.play();
     } else {
         btn.style.background = "red";
 
@@ -337,6 +347,9 @@ function check(btn, selected, correct){
 
         result.innerHTML = "❌ الإجابة الصحيحة: " + correct;
         result.style.color = "red";
+
+        wrongSound.currentTime = 0;
+        wrongSound.play();
     }
 
     setTimeout(next, 1200);

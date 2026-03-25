@@ -92,23 +92,6 @@ nav {
     border-radius: 30px;
     cursor: pointer;
     color: white;
-    margin-top: 10px;
-}
-
-/* زر الإيقاف */
-.stop-btn {
-    margin-top: 15px;
-    background: #6c757d;
-    border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    color: white;
-}
-
-.stop-btn:hover {
-    background: #495057;
 }
 
 /* QR */
@@ -149,10 +132,9 @@ nav {
     </p>
 
     <button class="start-btn" onclick="startJourney()">ابدأ الرحلة</button>
-    <br>
-    <button class="stop-btn" onclick="stopSound()">إيقاف الصوت 🔇</button>
 
-    <audio id="voice" src="voice.mp3.wav"></audio>
+    <!-- الصوت -->
+    <audio id="voice" src="voice.mp3.wav" autoplay></audio>
 
 </div>
 
@@ -202,22 +184,9 @@ function drawOrb() {
 
 drawOrb();
 
-/* تشغيل الرحلة */
+/* زر يبدأ الرحلة */
 function startJourney() {
-    let audio = document.getElementById("voice");
-
-    audio.play();
-
-    audio.onended = function () {
-        window.location.href = "topics.html";
-    };
-}
-
-/* إيقاف الصوت */
-function stopSound(){
-    let audio = document.getElementById("voice");
-    audio.pause();
-    audio.currentTime = 0;
+    window.location.href = "topics.html";
 }
 </script>
 
