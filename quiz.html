@@ -232,10 +232,132 @@ body::after {
 </div>
 
 <script>
+
+/* نور (زي ما هو عندك) */
 document.querySelector(".noor").onclick = () => {
     let s = document.querySelector(".speech");
     s.style.display = s.style.display === "none" ? "block" : "none";
 };
+
+/* ================== QUIZ ================== */
+
+let current = 0;
+let score = 0;
+let currentQuestions = [];
+
+const questions = {
+
+madina: [
+{q:"ما هي صحيفة المدينة؟", options:["معركة","دستور","كتاب","اتفاق"], answer:"دستور"},
+{q:"كتبت بعد؟", options:["بدر","الهجرة","أحد","الفتح"], answer:"الهجرة"},
+{q:"هدفها؟", options:["حرب","تنظيم المجتمع","تجارة","سفر"], answer:"تنظيم المجتمع"},
+{q:"شملت؟", options:["المسلمين فقط","اليهود فقط","الجميع","قريش"], answer:"الجميع"},
+{q:"من كتبها؟", options:["عمر","النبي ﷺ","علي","أبو بكر"], answer:"النبي ﷺ"}
+],
+
+badr: [
+{q:"متى حدثت بدر؟", options:["1هـ","2هـ","3هـ","4هـ"], answer:"2هـ"},
+{q:"عدد المسلمين؟", options:["300","1000","50","10"], answer:"300"},
+{q:"سبب الغزوة؟", options:["قافلة","رحلة","زيارة","لعب"], answer:"قافلة"},
+{q:"نتيجة المعركة؟", options:["هزيمة","تعادل","نصر","انسحاب"], answer:"نصر"},
+{q:"أهم درس؟", options:["الصبر","الخوف","الهروب","الكسل"], answer:"الصبر"}
+],
+
+ohod: [
+{q:"سبب أحد؟", options:["انتقام","هجرة","سلام","تجارة"], answer:"انتقام"},
+{q:"من خالف الأوامر؟", options:["الرماة","القادة","الجيش","الفرسان"], answer:"الرماة"},
+{q:"ماذا حدث؟", options:["هزيمة جزئية","نصر","تعادل","انسحاب"], answer:"هزيمة جزئية"},
+{q:"الدرس؟", options:["الطاعة","العصيان","الكسل","الخوف"], answer:"الطاعة"},
+{q:"عدد الجيش؟", options:["700","50","1000","10"], answer:"700"}
+],
+
+khandaq: [
+{q:"سبب الغزوة؟", options:["هجوم الأحزاب","رحلة","تجارة","زيارة"], answer:"هجوم الأحزاب"},
+{q:"فكرة الخندق؟", options:["سلمان","عمر","علي","أبو بكر"], answer:"سلمان"},
+{q:"ماذا حدث؟", options:["حصار","هجوم","انسحاب","سلام"], answer:"حصار"},
+{q:"كيف انتهت؟", options:["نصر","هزيمة","تعادل","انسحاب"], answer:"نصر"},
+{q:"الدرس؟", options:["التخطيط","الخوف","الكسل","الهروب"], answer:"التخطيط"}
+],
+
+khaybar: [
+{q:"سبب الغزوة؟", options:["تحالف الأعداء","زيارة","رحلة","لعب"], answer:"تحالف الأعداء"},
+{q:"أين خيبر؟", options:["خيبر","مكة","الشام","المدينة"], answer:"خيبر"},
+{q:"كيف كانت الحصون؟", options:["قوية","ضعيفة","صغيرة","مفتوحة"], answer:"قوية"},
+{q:"النتيجة؟", options:["نصر","هزيمة","تعادل","انسحاب"], answer:"نصر"},
+{q:"الدرس؟", options:["الصبر","الخوف","الكسل","الهروب"], answer:"الصبر"}
+]
+
+};
+
+/* بدء */
+function startQuiz(topic){
+    current = 0;
+    score = 0;
+    currentQuestions = questions[topic];
+    showQuestion();
+}
+
+/* عرض */
+function showQuestion(){
+    let q = currentQuestions[current];
+
+    document.getElementById("quiz").innerHTML = `
+        <div class="quiz-box">
+            <h3>${q.q}</h3>
+
+            ${q.options.map(opt => `
+                <button class="option" onclick="check(this,'${opt}','${q.answer}')">${opt}</button>
+            `).join("")}
+
+            <div class="result" id="result"></div>
+        </div>
+    `;
+}
+
+/* تحقق */
+function check(btn, selected, correct){
+    let result = document.getElementById("result");
+    let buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(b => b.disabled = true);
+
+    if(selected === correct){
+        btn.style.background = "green";
+        result.innerHTML = "✔ إجابة صحيحة";
+        result.style.color = "green";
+        score++;
+    } else {
+        btn.style.background = "red";
+
+        buttons.forEach(b => {
+            if(b.innerText === correct){
+                b.style.background = "green";
+            }
+        });
+
+        result.innerHTML = "❌ الإجابة الصحيحة: " + correct;
+        result.style.color = "red";
+    }
+
+    setTimeout(next, 1200);
+}
+
+/* التالي */
+function next(){
+    current++;
+
+    if(current < currentQuestions.length){
+        showQuestion();
+    } else {
+        document.getElementById("quiz").innerHTML = `
+            <div class="quiz-box">
+                <h2>🎉 انتهى الاختبار</h2>
+                <p>درجتك: ${score} / ${currentQuestions.length}</p>
+                <button class="restart" onclick="location.reload()">إعادة</button>
+            </div>
+        `;
+    }
+}
 
 </script>
 </body>

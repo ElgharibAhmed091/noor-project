@@ -118,6 +118,25 @@ h1 {
 .qr img {
     width: 90px;
 }
+.sound-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2d6a4f;
+    color: white;
+    font-size: 20px;
+    padding: 12px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.sound-btn:hover {
+    background: #40916c;
+    transform: scale(1.1);
+}
 .btn {
     background: #2d6a4f;
     color: white;
@@ -211,8 +230,31 @@ h1 {
     </div>
 
 </div>
+<audio id="voice" src="تنزيل (10).wav"></audio>
 <div class="qr">
   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
+</div>
+<script>
+let audio = document.getElementById("voice");
+
+/* تشغيل أول مرة عند أي ضغط */
+window.addEventListener("load", function () {
+    document.body.addEventListener("click", function () {
+        audio.play().catch(()=>{});
+    }, { once: true });
+});
+
+/* زر تشغيل / إيقاف */
+function toggleSound(){
+    if(audio.paused){
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+</script>
+<div class="sound-btn" onclick="toggleSound()">
+    🔊
 </div>
 </body>
 </html>

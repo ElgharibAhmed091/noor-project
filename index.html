@@ -12,13 +12,10 @@ body {
     font-family: 'Cairo', sans-serif;
     color: white;
     overflow-x: hidden;
-
-    /* 🌙 خلفية إسلامية */
     background: url("https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=1470&auto=format&fit=crop") no-repeat center center fixed;
     background-size: cover;
 }
 
-/* Overlay عشان القراءة */
 body::after {
     content: "";
     position: fixed;
@@ -27,7 +24,6 @@ body::after {
     z-index: -1;
 }
 
-/* Glow */
 body::before {
     content: "";
     position: fixed;
@@ -52,41 +48,14 @@ nav {
     backdrop-filter: blur(15px);
     background: rgba(0,0,0,0.5);
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    z-index: 1000;
 }
 
 .logo {
     font-size: 26px;
     font-weight: 700;
     color: #52b788;
-    letter-spacing: 2px;
-    position: relative;
-    cursor: pointer;
-    transition: 0.3s;
 }
 
-/* تأثير Hover 🔥 */
-.logo:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 15px #52b788;
-}
-
-/* خط تحت متحرك */
-.logo::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    right: 0;
-    width: 0%;
-    height: 2px;
-    background: #52b788;
-    transition: 0.4s;
-}
-
-.logo:hover::after {
-    width: 100%;
-}
-/* links */
 .links {
     display: flex;
     gap: 20px;
@@ -96,7 +65,6 @@ nav {
     color: #ddd;
     margin-left:52px;
     text-decoration: none;
-    transition: 0.3s;
 }
 
 .links a:hover {
@@ -107,41 +75,12 @@ nav {
 .container {
     margin-top: 180px;
     text-align: center;
-    animation: fadeUp 1s ease;
-}
-
-/* Animation دخول */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Orb */
 #orbCanvas {
     display: block;
     margin: 40px auto;
-    width: 260px;
-    height: 260px;
-    filter: drop-shadow(0 0 60px #52b788);
-}
-
-/* Text */
-h1 {
-    font-size: 40px;
-}
-
-p {
-    color: #eee;
-    font-size: 18px;
-    max-width: 600px;
-    margin: 20px auto;
-    line-height: 1.9;
 }
 
 /* Button */
@@ -153,13 +92,23 @@ p {
     border-radius: 30px;
     cursor: pointer;
     color: white;
-    box-shadow: 0 0 25px rgba(82,183,136,0.8);
-    transition: 0.3s;
+    margin-top: 10px;
 }
 
-.start-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 50px rgba(82,183,136,1);
+/* زر الإيقاف */
+.stop-btn {
+    margin-top: 15px;
+    background: #6c757d;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+.stop-btn:hover {
+    background: #495057;
 }
 
 /* QR */
@@ -167,12 +116,7 @@ p {
     position: fixed;
     bottom: 15px;
     left: 15px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    padding: 8px;
-    border-radius: 12px;
 }
-
 .qr img {
     width: 80px;
 }
@@ -181,7 +125,6 @@ p {
 
 <body>
 
-<!-- Navbar -->
 <nav>
    <div class="logo">🌙 نور</div>
 
@@ -194,7 +137,6 @@ p {
     </div>
 </nav>
 
-<!-- Content -->
 <div class="container">
 
     <canvas id="orbCanvas"></canvas>
@@ -207,13 +149,13 @@ p {
     </p>
 
     <button class="start-btn" onclick="startJourney()">ابدأ الرحلة</button>
+    <br>
+    <button class="stop-btn" onclick="stopSound()">إيقاف الصوت 🔇</button>
 
-    <!-- الصوت -->
     <audio id="voice" src="voice.mp3.wav"></audio>
 
 </div>
 
-<!-- QR -->
 <div class="qr">
   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
 </div>
@@ -247,12 +189,10 @@ function drawOrb() {
 
     for (let i = 0; i < 6; i++) {
         ctx.beginPath();
-
         for (let x = 0; x < 300; x++) {
             let y = 150 + Math.sin((x * 0.05) + t + i) * (10 + i * 3);
             ctx.lineTo(x, y);
         }
-
         ctx.stroke();
     }
 
@@ -262,7 +202,7 @@ function drawOrb() {
 
 drawOrb();
 
-/* الدخول + صوت */
+/* تشغيل الرحلة */
 function startJourney() {
     let audio = document.getElementById("voice");
 
@@ -271,6 +211,13 @@ function startJourney() {
     audio.onended = function () {
         window.location.href = "topics.html";
     };
+}
+
+/* إيقاف الصوت */
+function stopSound(){
+    let audio = document.getElementById("voice");
+    audio.pause();
+    audio.currentTime = 0;
 }
 </script>
 
