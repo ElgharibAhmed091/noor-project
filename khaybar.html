@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>غزوة خيبر - نور</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+ margin: 0;
+    font-family: 'Cairo', sans-serif;
+    color: #1b4332;
+
+    /* 🌙 خلفية إسلامية */
+    background: url("https://images.unsplash.com/photo-1558114965-eeb97aa84c3b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXNsYW1pYyUyMHBhdHRlcm58ZW58MHx8MHx8fDA%3D") no-repeat center center fixed;
+    background-size: cover;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.85);
+    z-index: -1;
+}
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #52b788;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px #52b788;
+}
+
+.links a {
+     margin-left:52px;
+    text-decoration: none;
+    color: #555;
+}
+
+/* Container */
+.container {
+    margin-top: 120px;
+    padding: 20px;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Section */
+.section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+    animation: fadeUp 0.6s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    background: #f1fdf4;
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #2d6a4f;
+}
+
+.section p {
+    line-height: 1.9;
+}
+
+/* Buttons */
+.buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+.qr {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255,255,255,0.9);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.qr:hover {
+    transform: scale(1.1);
+}
+
+/* الصورة */
+.qr img {
+    width: 90px;
+}
+.btn {
+    background: #2d6a4f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #40916c;
+}
+
+/* Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">نور</div>
+
+    <div class="links">
+           <a href="index.html">الرئيسية</a>
+        <a href="purpose.html">هدف المشروع</a>
+        <a href="topics.html">المواضيع</a>
+        <a href="quiz.html">الأسئلة</a>
+        <a href="sources.html">المصادر</a>
+    </div>
+</nav>
+
+<!-- Content -->
+<div class="container">
+
+    <h1>🏰 غزوة خيبر</h1>
+
+    <!-- السبب -->
+    <div class="section">
+        <h2>سبب الغزوة</h2>
+        <p>
+            خرج المسلمون إلى خيبر بسبب تحالف اليهود مع أعداء المسلمين 
+            ومحاولاتهم تهديد المدينة.
+        </p>
+    </div>
+
+    <!-- الأحداث -->
+    <div class="section">
+        <h2>أهم الأحداث</h2>
+        <p>
+            واجه المسلمون حصون خيبر القوية، 
+            وتم فتحها تدريجيًا بعد معارك متعددة، 
+            وكان لثبات المسلمين دور كبير في النصر.
+        </p>
+    </div>
+
+    <!-- النتيجة -->
+    <div class="section">
+        <h2>نتيجة الغزوة</h2>
+        <p>
+            انتهت الغزوة بانتصار المسلمين، 
+            وسيطرتهم على خيبر، مما عزز قوتهم في المنطقة.
+        </p>
+    </div>
+
+    <!-- الدروس -->
+    <div class="section">
+        <h2>أهم الدروس المستفادة</h2>
+        <p>
+            الصبر، الشجاعة، الثقة بالله، 
+            وأهمية الوحدة في تحقيق النصر.
+        </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <a href="topics.html" class="btn">⬅ العودة للمواضيع</a>
+        <a href="index.html" class="btn">🏠 الصفحة الرئيسية</a>
+    </div>
+
+</div>
+<div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://example.com">
+</div>
+</body>
+</html>

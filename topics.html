@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>اختيار المواضيع - نور</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    color: #1b4332;
+
+    /* 🌙 خلفية إسلامية */
+    background: url("https://images.unsplash.com/photo-1558114965-eeb97aa84c3b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXNsYW1pYyUyMHBhdHRlcm58ZW58MHx8MHx8fDA%3D") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.85);
+    z-index: -1;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #52b788;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px #52b788;
+}
+
+/* Links */
+.links {
+    display: flex;
+    gap: 20px;
+}
+
+.links a {
+      margin-left:52px;
+    text-decoration: none;
+    color: #555;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: #2d6a4f;
+}
+
+/* Container */
+.container {
+    margin-top: 120px;
+    padding: 20px;
+    text-align: center;
+}
+/* نور */
+.noor {
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    z-index: 999;
+    text-align: center;
+}
+
+/* تكبير الصورة */
+.noor-img {
+    width: 120px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* حركة */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+/* الفقاعة */
+.speech {
+    position: absolute;
+    bottom: 140px;
+    right: 10px;
+    background: white;
+    color: #1b4332;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 15px;
+    width: 200px;
+    line-height: 1.6;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* سهم */
+.speech::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 40px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+/* Title */
+h1 {
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+
+/* Cards Grid */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+.qr {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255,255,255,0.9);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.qr:hover {
+    transform: scale(1.1);
+}
+
+/* الصورة */
+.qr img {
+    width: 90px;
+}
+/* Card */
+.card {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 35px 20px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: 0.4s;
+    backdrop-filter: blur(6px);
+    animation: fadeUp 0.6s ease;
+}
+
+/* Hover */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: #d8f3dc;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Text */
+.card h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+/* Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay */
+.card:nth-child(1){animation-delay:0.1s;}
+.card:nth-child(2){animation-delay:0.2s;}
+.card:nth-child(3){animation-delay:0.3s;}
+.card:nth-child(4){animation-delay:0.4s;}
+.card:nth-child(5){animation-delay:0.5s;}
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">نور</div>
+
+    <div class="links">
+        <a href="index.html">الرئيسية</a>
+        <a href="purpose.html">هدف المشروع</a>
+        <a href="topics.html">المواضيع</a>
+        <a href="quiz.html">الأسئلة</a>
+        <a href="sources.html">المصادر</a>
+    </div>
+</nav>
+
+<!-- Content -->
+<div class="container">
+
+    <h1>اختر الموضوع الذي تريد تعلمه 👇</h1>
+
+    <div class="cards">
+
+        <div class="card" onclick="go('madina.html')">
+            <h2>📜 صحيفة المدينة</h2>
+        </div>
+
+        <div class="card" onclick="go('badr.html')">
+            <h2>⚔️ غزوة بدر</h2>
+        </div>
+
+        <div class="card" onclick="go('ohod.html')">
+            <h2>🛡️ غزوة أحد</h2>
+        </div>
+
+        <div class="card" onclick="go('khandaq.html')">
+            <h2>🏹 غزوة الخندق</h2>
+        </div>
+
+        <div class="card" onclick="go('khaybar.html')">
+            <h2>🏰 غزوة خيبر</h2>
+        </div>
+
+    </div>
+
+<div class="noor">
+    <img src="image.png" class="noor-img">
+    <div class="speech">
+        أنا نور 😊<br>
+        اختر موضوع وابدأ التحدي 💪
+    </div>
+</div>
+<script>
+function go(page) {
+    window.location.href = page;
+}
+</script>
+<div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://example.com">
+</div>
+
+</body>
+</html>

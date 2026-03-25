@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>نور - السيرة النبوية</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    /* 🌙 خلفية إسلامية */
+    background: url("https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=1470&auto=format&fit=crop") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Overlay عشان القراءة */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: -1;
+}
+
+/* Glow */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #52b788;
+    filter: blur(150px);
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(15px);
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #52b788;
+    letter-spacing: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* تأثير Hover 🔥 */
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px #52b788;
+}
+
+/* خط تحت متحرك */
+.logo::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0%;
+    height: 2px;
+    background: #52b788;
+    transition: 0.4s;
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+/* links */
+.links {
+    display: flex;
+    gap: 20px;
+}
+
+.links a {
+    color: #ddd;
+    margin-left:52px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: #52b788;
+}
+
+/* Main */
+.container {
+    margin-top: 180px;
+    text-align: center;
+    animation: fadeUp 1s ease;
+}
+
+/* Animation دخول */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Orb */
+#orbCanvas {
+    display: block;
+    margin: 40px auto;
+    width: 260px;
+    height: 260px;
+    filter: drop-shadow(0 0 60px #52b788);
+}
+
+/* Text */
+h1 {
+    font-size: 40px;
+}
+
+p {
+    color: #eee;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 20px auto;
+    line-height: 1.9;
+}
+
+/* Button */
+.start-btn {
+    background: linear-gradient(135deg, #52b788, #1b4332);
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 0 25px rgba(82,183,136,0.8);
+    transition: 0.3s;
+}
+
+.start-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px rgba(82,183,136,1);
+}
+
+/* QR */
+.qr {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.qr img {
+    width: 80px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+   <div class="logo">🌙 نور</div>
+
+    <div class="links">
+        <a href="#">الرئيسية</a>
+        <a href="purpose.html">هدف المشروع</a>
+        <a href="topics.html">المواضيع</a>
+        <a href="quiz.html">الأسئلة</a>
+        <a href="sources.html">المصادر</a>
+    </div>
+</nav>
+
+<!-- Content -->
+<div class="container">
+
+    <canvas id="orbCanvas"></canvas>
+
+    <h1>مرحباً بك 👋</h1>
+
+    <p>
+        مرحباً بك في رحلة مميزة في السيرة النبوية 🌙<br><br>
+        أنا <strong>نور</strong>، دليلك لاكتشاف أهم الأحداث بطريقة حديثة وتفاعلية.
+    </p>
+
+    <button class="start-btn" onclick="startJourney()">ابدأ الرحلة</button>
+
+    <!-- الصوت -->
+    <audio id="voice" src="voice.mp3.wav"></audio>
+
+</div>
+
+<!-- QR -->
+<div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com">
+</div>
+
+<script>
+const canvas = document.getElementById("orbCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 300;
+canvas.height = 300;
+
+let t = 0;
+
+function drawOrb() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    let cx = canvas.width / 2;
+    let cy = canvas.height / 2;
+
+    let g = ctx.createRadialGradient(cx, cy, 50, cx, cy, 140);
+    g.addColorStop(0, "#52b788");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 120, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
+    ctx.lineWidth = 1.5;
+
+    for (let i = 0; i < 6; i++) {
+        ctx.beginPath();
+
+        for (let x = 0; x < 300; x++) {
+            let y = 150 + Math.sin((x * 0.05) + t + i) * (10 + i * 3);
+            ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+    }
+
+    t += 0.05;
+    requestAnimationFrame(drawOrb);
+}
+
+drawOrb();
+
+/* الدخول + صوت */
+function startJourney() {
+    let audio = document.getElementById("voice");
+
+    audio.play();
+
+    audio.onended = function () {
+        window.location.href = "topics.html";
+    };
+}
+</script>
+
+</body>
+</html>
