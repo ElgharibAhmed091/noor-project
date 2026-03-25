@@ -92,6 +92,23 @@ nav {
     border-radius: 30px;
     cursor: pointer;
     color: white;
+    margin-top: 10px;
+}
+
+/* زر الإيقاف */
+.stop-btn {
+    margin-top: 15px;
+    background: #6c757d;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+.stop-btn:hover {
+    background: #495057;
 }
 
 /* QR */
@@ -132,9 +149,10 @@ nav {
     </p>
 
     <button class="start-btn" onclick="startJourney()">ابدأ الرحلة</button>
+    <br>
 
-    <!-- الصوت -->
-    <audio id="voice" src="voice.mp3.wav" autoplay></audio>
+
+    <audio id="voice" src="voice.mp3.wav"></audio>
 
 </div>
 
@@ -184,10 +202,34 @@ function drawOrb() {
 
 drawOrb();
 
-/* زر يبدأ الرحلة */
+/* ================= الصوت ================= */
+
+let audio = document.getElementById("voice");
+
+/* محاولة تشغيل تلقائي */
+window.addEventListener("load", () => {
+    audio.play().catch(() => {
+        console.log("autoplay blocked");
+    });
+});
+
+/* fallback: أول click */
+document.addEventListener("click", () => {
+    if(audio.paused){
+        audio.play().catch(()=>{});
+    }
+}, { once: true });
+
+/* زر الرحلة */
 function startJourney() {
-    window.location.href = "topics.html";
+    audio.play().catch(()=>{});
+
+    audio.onended = function () {
+        window.location.href = "topics.html";
+    };
 }
+
+
 </script>
 
 </body>
