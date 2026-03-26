@@ -98,6 +98,7 @@ h1 {
     text-align: center;
     margin-top: 30px;
 }
+
 .qr {
     position: fixed;
     bottom: 15px;
@@ -158,7 +159,14 @@ h1 {
     z-index: 999;
     transition: 0.3s;
 }
-
+#orbCanvas {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 120px;
+    height: 120px;
+    z-index: 999;
+}
 .sound-btn:hover {
     background: #40916c;
     transform: scale(1.1);
@@ -249,27 +257,35 @@ h1 {
 <div class="qr">
   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
 </div>
+
+<!-- الكورة -->
+<canvas id="orbCanvas"></canvas>
+<script src="orb.js"></script>
+
 <script>
 let audio = document.getElementById("voice");
 
-/* تشغيل أول مرة عند أي ضغط */
+/* تشغيل أول مرة */
 window.addEventListener("load", function () {
     document.body.addEventListener("click", function () {
         audio.play().catch(()=>{});
     }, { once: true });
 });
 
-/* زر تشغيل / إيقاف */
-function toggleSound(){
-    if(audio.paused){
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}
+/* ⛔ لازم نجيب الكورة بعد ما تتحمل */
+window.addEventListener("DOMContentLoaded", function () {
+    let orb = document.getElementById("orbCanvas");
+
+    orb.addEventListener("click", function () {
+        if(audio.paused){
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+});
 </script>
-<div class="sound-btn" onclick="toggleSound()">
-    🔊
-</div>
+
+
 </body>
 </html>

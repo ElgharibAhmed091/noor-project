@@ -11,38 +11,10 @@ body {
     margin: 0;
     font-family: 'Cairo', sans-serif;
     color: #1b4332;
-
     background: url("https://images.unsplash.com/photo-1558114965-eeb97aa84c3b") no-repeat center center fixed;
     background-size: cover;
 }
-/* Animation */
-/* Animation */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-        filter: blur(6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
 
-/* تطبيق الأنيميشن على box */
-.box {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-}
-/* تطبيق الأنيميشن */
-.source {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-}
-.box:nth-child(2){ animation-delay: 0.2s; }
-.box:nth-child(3){ animation-delay: 0.4s; }
-.box:nth-child(4){ animation-delay: 0.6s; }
 /* Overlay */
 body::after {
     content: "";
@@ -69,28 +41,12 @@ nav {
     font-size: 26px;
     font-weight: bold;
     color: #52b788;
-    transition: 0.3s;
-}
-
-.logo:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 10px #52b788;
-}
-
-.links {
-    display: flex;
-    gap: 20px;
 }
 
 .links a {
+    margin-left:52px;
     text-decoration: none;
     color: #555;
-     margin-left:52px;
-    transition: 0.3s;
-}
-
-.links a:hover {
-    color: #2d6a4f;
 }
 
 /* Container */
@@ -102,12 +58,7 @@ nav {
     text-align: center;
 }
 
-/* Title */
-h1 {
-    margin-bottom: 30px;
-}
-
-/* Sections */
+/* Boxes */
 .box {
     background: white;
     padding: 25px;
@@ -115,37 +66,29 @@ h1 {
     border-radius: 12px;
     border: 1px solid #ddd;
     transition: 0.3s;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
 }
+
+.box:nth-child(2){ animation-delay: 0.2s; }
+.box:nth-child(3){ animation-delay: 0.4s; }
 
 .box:hover {
     background: #f1fdf4;
     transform: translateY(-5px);
 }
 
-/* Text */
-p {
-    line-height: 1.9;
-}
-.sound-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #2d6a4f;
-    color: white;
-    font-size: 20px;
-    padding: 12px 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    z-index: 999;
-    transition: 0.3s;
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-
-.sound-btn:hover {
-    background: #40916c;
-    transform: scale(1.1);
-}
 /* Button */
 .btn {
     margin-top: 20px;
@@ -155,11 +98,46 @@ p {
     border-radius: 10px;
     text-decoration: none;
     display: inline-block;
-    transition: 0.3s;
 }
 
-.btn:hover {
-    background: #40916c;
+/* الكورة */
+#orbCanvas {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 120px;
+    height: 120px;
+    z-index: 999;
+}
+
+/* النص فوق الكورة */
+.orb-text {
+    position: fixed;
+    bottom: 210px;
+    right: 20px;
+    background: #2d6a4f;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    z-index: 999;
+    animation: floatText 2s infinite;
+}
+
+.orb-text::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 25px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #2d6a4f transparent transparent transparent;
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
 }
 
 /* QR */
@@ -167,9 +145,6 @@ p {
     position: fixed;
     bottom: 15px;
     left: 15px;
-    background: rgba(255,255,255,0.9);
-    padding: 8px;
-    border-radius: 12px;
 }
 
 .qr img {
@@ -180,7 +155,6 @@ p {
 
 <body>
 
-<!-- Navbar -->
 <nav>
     <div class="logo">نور</div>
 
@@ -193,7 +167,6 @@ p {
     </div>
 </nav>
 
-<!-- Content -->
 <div class="container">
 
     <h1>🎯 هدف المشروع</h1>
@@ -201,16 +174,14 @@ p {
     <div class="box">
         <h3>💡 فكرة المشروع</h3>
         <p>
-            يهدف هذا الموقع إلى تقديم محتوى تعليمي مبسط عن السيرة النبوية، 
-            بطريقة حديثة تساعد المستخدم على فهم الأحداث بشكل سهل.
+            يهدف هذا الموقع إلى تقديم محتوى تعليمي مبسط عن السيرة النبوية بطريقة حديثة.
         </p>
     </div>
 
     <div class="box">
         <h3>🎯 الهدف من الموقع</h3>
         <p>
-            يهدف الموقع إلى عرض أهم أحداث السيرة النبوية بطريقة تفاعلية، 
-            تساعد المستخدم على التعلم والاستفادة من الدروس المستخلصة.
+            عرض السيرة النبوية بشكل تفاعلي يساعد المستخدم على التعلم بسهولة.
         </p>
     </div>
 
@@ -218,36 +189,43 @@ p {
 
 </div>
 
-<!-- صوت -->
+<!-- النص -->
+<div class="orb-text">اضغط علي الكورة 🔊</div>
+
+<!-- الصوت -->
 <audio id="voice" src="sound.wav"></audio>
 
-<!-- QR -->
-<div class="qr">
-   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
-</div>
+<!-- الكورة -->
+<canvas id="orbCanvas"></canvas>
+<script src="orb.js"></script>
 
-<!-- تشغيل الصوت -->
 <script>
 let audio = document.getElementById("voice");
 
-/* تشغيل أول مرة عند أي ضغط */
+/* تشغيل أول مرة */
 window.addEventListener("load", function () {
     document.body.addEventListener("click", function () {
         audio.play().catch(()=>{});
     }, { once: true });
 });
 
-/* زر تشغيل / إيقاف */
-function toggleSound(){
-    if(audio.paused){
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}
+/* التحكم بالكورة */
+window.addEventListener("DOMContentLoaded", function () {
+    let orb = document.getElementById("orbCanvas");
+
+    orb.addEventListener("click", function () {
+        if(audio.paused){
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+});
 </script>
-<div class="sound-btn" onclick="toggleSound()">
-    🔊
+
+<div class="qr">
+   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://elgharibahmed091.github.io/noor-project/">
 </div>
+
 </body>
 </html>
